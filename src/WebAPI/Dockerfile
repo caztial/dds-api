@@ -22,4 +22,5 @@ RUN dotnet publish "WebAPI.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+COPY "src/WebAPI/data.db" .
 ENTRYPOINT ["dotnet", "WebAPI.dll"]
