@@ -12,6 +12,8 @@ namespace Core.Specifications
     {
         public ListAccountsSpec(bool? status,int take, int skip)
         {
+            Query.Include(a => a.AgentAssignment);
+
             if(status != null)
             {
                 Query.Where(a => a.IsVerified.Equals(status)).Take(take).Skip(skip);

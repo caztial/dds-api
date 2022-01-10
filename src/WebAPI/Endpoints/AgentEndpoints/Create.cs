@@ -11,11 +11,9 @@ namespace WebAPI.Endpoints.AgentEndpoints
     public class Create : BaseAsyncEndpoint.WithRequest<CreateAgentRequest>.WithResponse<Agent>
     {
         private readonly IRepository<Agent> _repository;
-        private readonly IAccountService _accountService;
-        public Create(IRepository<Agent> repository, IAccountService accountService)
+        public Create(IRepository<Agent> repository)
         {
             _repository = repository;
-            _accountService = accountService;
         }
 
         [HttpPost("/Agent")]

@@ -8,7 +8,6 @@ namespace Infrastructure.Data.Config
     {
         public void Configure(EntityTypeBuilder<AgentAssignment> builder)
         {
-            builder.HasOne<Account>(s => s.Account);
             builder.HasAlternateKey(s => s.AccountId);
         }
     }

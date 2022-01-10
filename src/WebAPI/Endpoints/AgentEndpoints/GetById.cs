@@ -1,5 +1,6 @@
 ﻿using Ardalis.ApiEndpoints;
 using Core.Entities;
+using Core.Specifications;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernal.Interfaces;
 using Swashbuckle.AspNetCore.Annotations;
@@ -21,9 +22,16 @@ namespace WebAPI.Endpoints.AgentEndpoints
             OperationId = "Agent.GetById",
             Tags = new[] { "AgentEndpoints" })
         ]
-        public override Task<ActionResult<Agent>> HandleAsync([FromRoute]GetAgentByIdRequest request, CancellationToken cancellationToken = default)
+        public async override Task<ActionResult<Agent>> HandleAsync([FromRoute]GetAgentByIdRequest request, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            ListAgentByIdSpec spec = new(request.AgentId, request.Assignments);
+            Agent agent = await _repository.GetBySpecAsync(spec, cancellationToken);
+            if (agent == null)
+            {
+                return NotFound();
+            }
+
+            return agent;
         }
     }
 }

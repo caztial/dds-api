@@ -7,7 +7,6 @@ namespace Core.Entities
         public int Id { get; set; }
         public int AgentId { get; set; }
         public int AccountId { get; set; }
-        public Account Account { get; set; }
         public int Count { get; set; }
         public bool Status { get; set; }
         public DateTimeOffset AssignemntOn { get; set; }

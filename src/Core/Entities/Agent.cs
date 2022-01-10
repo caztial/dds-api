@@ -33,24 +33,25 @@ namespace Core.Entities
             return Assignments;
         }
 
-        public IEnumerable<AgentAssignment> RemoveAssignment(int assignmentId)
+        public bool RemoveAssignment(int assignmentId)
         {
             AgentAssignment? removeAssignment = _assignments.Find(a => a.Id.Equals(assignmentId));
             if(removeAssignment != null)
             {
-                _assignments.Remove(removeAssignment);
+                return _assignments.Remove(removeAssignment);
             }
-            return Assignments;
+            return false;
         }
 
-        public AgentAssignment? UpdateAssignemntStatus(int assignmentId, bool status)
+        public bool UpdateAssignemntStatus(int assignmentId, bool status)
         {
             AgentAssignment? updateAssignment = _assignments.Find(a => a.Id.Equals(assignmentId));
             if(updateAssignment != null)
             {
                 updateAssignment.UpdateAssignmentStatus(status);
+                return true;
             }
-            return updateAssignment;
+            return false;
         }
     }
 }

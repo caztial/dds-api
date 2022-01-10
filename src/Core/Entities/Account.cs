@@ -14,7 +14,7 @@ namespace Core.Entities
         public string Name { get; set; }
         public bool IsVerified { get; set; }
         public DateTimeOffset CreatedOn { get; set; }
-
+        public AgentAssignment AgentAssignment { get; set; }
         public Account(string name, bool verified=false)
         {
             Name = name;
