@@ -46,6 +46,7 @@ namespace WebAPI.Endpoints.AccountEndpoints
             {
                 account.VerifyAccount();
             }
+            await _repository.UpdateAsync(account, cancellationToken);
             return Ok(account);
         }
 

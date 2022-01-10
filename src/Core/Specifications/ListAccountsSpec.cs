@@ -10,9 +10,17 @@ namespace Core.Specifications
 {
     public class ListAccountsSpec : Specification<Account>
     {
-        public ListAccountsSpec(int take, int skip)
+        public ListAccountsSpec(bool? status,int take, int skip)
         {
-            Query.Take(take).Skip(skip);
+            if(status != null)
+            {
+                Query.Where(a => a.IsVerified.Equals(status)).Take(take).Skip(skip);
+            }
+            else
+            {
+                Query.Take(take).Skip(skip);
+            }
+            
         }
     }
 }

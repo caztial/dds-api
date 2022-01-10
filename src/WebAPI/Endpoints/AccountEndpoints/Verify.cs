@@ -30,7 +30,7 @@ namespace WebAPI.Endpoints.AccountEndpoints
                 return NotFound();
             }
             account.VerifyAccount();
-
+            await _repository.UpdateAsync(account,cancellationToken);
             return Ok(account);
         }
     }

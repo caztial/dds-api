@@ -19,7 +19,7 @@ namespace Core.Services
 
         public async Task<bool> IsDuplicateAccount(string accountName)
         {
-            var listAccountSpec = new ListAccountsByName(accountName);
+            var listAccountSpec = new ListAccountsByNameSpec(accountName);
             var accounts = await _repository.ListAsync(listAccountSpec);
             return accounts.Count > 0;
         }

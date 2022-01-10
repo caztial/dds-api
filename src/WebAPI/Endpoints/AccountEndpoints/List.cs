@@ -24,9 +24,9 @@ namespace WebAPI.Endpoints.AccountEndpoints
         ]
         public override async Task<ActionResult<ListAccountResponse>> HandleAsync([FromQuery]ListAccountsRequest request, CancellationToken cancellationToken = default)
         {
-            var ListAccountSpec = new ListAccountsSpec(request.Take,request.Skip);
+            var ListAccountSpec = new ListAccountsSpec(request.Status,request.Take,request.Skip);
             List<Account> accounts = await _repository.ListAsync(ListAccountSpec, cancellationToken);
-            int count = await _repository.CountAsync(cancellationToken);
+            int count = await _repository.CountAsync(ListAccountSpec,cancellationToken);
             if(accounts.Count == 0)
             {
                 return NotFound();
