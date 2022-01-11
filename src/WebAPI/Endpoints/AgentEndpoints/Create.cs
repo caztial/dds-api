@@ -30,7 +30,7 @@ namespace WebAPI.Endpoints.AgentEndpoints
                 return BadRequest();
             }
 
-            Agent newAgent = new(request.Name);
+            Agent newAgent = new(request.Name,request.Username,request.Password);
             newAgent.Coordinator = request.Coordinator;
             newAgent.Phone = request.Phone;
             newAgent.GroupId = request.GroupId;

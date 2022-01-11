@@ -19,8 +19,8 @@ namespace WebAPI.Endpoints.AccountEndpoints
 
         [HttpPut("/Account")]
         [SwaggerOperation(
-            Summary = "Update a existing Account",
-            Description = "Update a existing Account",
+            Summary = "Update an existing Account",
+            Description = "Update an existing Account",
             OperationId = "Account.Update",
             Tags = new[] { "AccountEndpoints" })
         ]
@@ -31,7 +31,7 @@ namespace WebAPI.Endpoints.AccountEndpoints
             {
                 return NotFound();
             }
-            if(request.Name != account.Name )
+            if(request.Name != account.Name)
             {
                 if (!await _accountService.IsDuplicateAccount(request.Name))
                 {

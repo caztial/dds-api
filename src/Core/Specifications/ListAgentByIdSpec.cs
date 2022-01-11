@@ -10,7 +10,9 @@ namespace Core.Specifications
             Query.Where(a => a.Id.Equals(agentId));
             if (withAssignemnts)
             {
-                Query.Include(a => a.Assignments.Where(a=>a.AgentId.Equals(agentId)));
+                Query.Include(a=>a.Group)
+                    .Include(a => a.Assignments.Where(a=>a.AgentId.Equals(agentId)))
+                    .ThenInclude(a=>a.Account);
             }
            
         }

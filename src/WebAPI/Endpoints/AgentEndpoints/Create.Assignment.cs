@@ -28,7 +28,7 @@ namespace WebAPI.Endpoints.AgentEndpoints
         {
             ListAgentByIdSpec spec = new ListAgentByIdSpec(request.AgentId,true);
             Agent agent = await _agentRepository.GetBySpecAsync(spec, cancellationToken);
-            ListAccountsByIdSpec accountSpec = new ListAccountsByIdSpec(request.AccountId);
+            GetAccountByIdSpec accountSpec = new GetAccountByIdSpec(request.AccountId);
             Account account = await _accountRepository.GetBySpecAsync(accountSpec, cancellationToken);
             
             if(agent == null || account == null)

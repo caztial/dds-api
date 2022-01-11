@@ -3,9 +3,9 @@ using Core.Entities;
 
 namespace Core.Specifications
 {
-    public class ListAccountsByIdSpec : Specification<Account>, ISingleResultSpecification
+    public class GetAccountByIdSpec : Specification<Account>, ISingleResultSpecification
     {
-        public ListAccountsByIdSpec(int id)
+        public GetAccountByIdSpec(int id)
         {
             Query.Include(a => a.AgentAssignment).Where(a => a.Id == id);
         }
