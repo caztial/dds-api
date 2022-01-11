@@ -28,6 +28,8 @@ namespace Core.Entities
             Status = status;
             if(status)
                 Count = count;
+            else
+                Count = 0;
             LastUpdateOn = DateTimeOffset.UtcNow;
         }
 

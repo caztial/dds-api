@@ -7,7 +7,7 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace WebAPI.Endpoints.AgentEndpoints
 {
-    public class DeleteAssignment : BaseAsyncEndpoint.WithRequest<UpdateAssignmentRequest>.WithResponse<Agent>
+    public class DeleteAssignment : BaseAsyncEndpoint.WithRequest<DeleteAssignmentRequest>.WithResponse<Agent>
     {
         private readonly IRepository<Agent> _agentRepository;
         public DeleteAssignment(IRepository<Agent> agentRepository)
@@ -15,14 +15,14 @@ namespace WebAPI.Endpoints.AgentEndpoints
             _agentRepository = agentRepository;
         }
 
-        [HttpDelete(UpdateAssignmentRequest.ROUTE)]
+        [HttpDelete(DeleteAssignmentRequest.ROUTE)]
         [SwaggerOperation(
             Summary = "Delete assignemnt of an Agent",
             Description = "Delete assignemnt of an Agent",
             OperationId = "Agent.DeleteAssignment",
             Tags = new[] { "AgentEndpoints" })
         ]
-        public async override Task<ActionResult<Agent>> HandleAsync([FromRoute] UpdateAssignmentRequest request, CancellationToken cancellationToken = default)
+        public async override Task<ActionResult<Agent>> HandleAsync([FromRoute] DeleteAssignmentRequest request, CancellationToken cancellationToken = default)
         {
             ListAgentByIdSpec spec = new ListAgentByIdSpec(request.AgentId, true);
             Agent agent = await _agentRepository.GetBySpecAsync(spec, cancellationToken);

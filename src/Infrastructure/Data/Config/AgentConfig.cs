@@ -9,6 +9,7 @@ namespace Infrastructure.Data.Config
         public void Configure(EntityTypeBuilder<Agent> builder)
         {
             builder.HasOne<Group>(s => s.Group);
+            builder.HasAlternateKey(a=> a.Username);
         }
     }
 }

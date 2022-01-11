@@ -7,22 +7,22 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace WebAPI.Endpoints.AgentEndpoints
 {
-    public class CompleteAssignment : BaseAsyncEndpoint.WithRequest<UpdateAssignmentRequest>.WithResponse<Agent>
+    public class AssignmentStatus : BaseAsyncEndpoint.WithRequest<AssignmentStatusRequest>.WithResponse<Agent>
     {
         private readonly IRepository<Agent> _agentRepository;
-        public CompleteAssignment(IRepository<Agent> agentRepository)
+        public AssignmentStatus(IRepository<Agent> agentRepository)
         {
             _agentRepository = agentRepository;
         }
 
-        [HttpPatch(UpdateAssignmentRequest.COMPLETE_ROUTE)]
+        [HttpPatch(AssignmentStatusRequest.ROUTE)]
         [SwaggerOperation(
             Summary = "Complete assignemnt of an Agent",
             Description = "Complete assignemnt of an Agent",
             OperationId = "Agent.CompleteAssignment",
             Tags = new[] { "AgentEndpoints" })
         ]
-        public async override Task<ActionResult<Agent>> HandleAsync([FromRoute] UpdateAssignmentRequest request, CancellationToken cancellationToken = default)
+        public async override Task<ActionResult<Agent>> HandleAsync([FromRoute] AssignmentStatusRequest request, CancellationToken cancellationToken = default)
         {
             ListAgentByIdSpec spec = new(request.AgentId, true);
             Agent agent = await _agentRepository.GetBySpecAsync(spec, cancellationToken);
@@ -32,7 +32,7 @@ namespace WebAPI.Endpoints.AgentEndpoints
                 return BadRequest("Invalid AgentId");
             }
 
-            if (!agent.UpdateAssignemntStatus(request.AssignmentId,true))
+            if (!agent.UpdateAssignemntStatus(request.AssignmentId,request.Status))
             {
                 return NotFound();
             }
