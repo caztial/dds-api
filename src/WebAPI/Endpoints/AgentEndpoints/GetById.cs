@@ -24,7 +24,7 @@ namespace WebAPI.Endpoints.AgentEndpoints
         ]
         public async override Task<ActionResult<Agent>> HandleAsync([FromRoute]GetAgentByIdRequest request, CancellationToken cancellationToken = default)
         {
-            ListAgentByIdSpec spec = new(request.AgentId, request.Assignments);
+            GetAgentByIdSpec spec = new(request.AgentId, request.Assignments);
             Agent agent = await _repository.GetBySpecAsync(spec, cancellationToken);
             if (agent == null)
             {

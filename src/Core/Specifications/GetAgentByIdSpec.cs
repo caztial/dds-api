@@ -3,9 +3,9 @@ using Core.Entities;
 
 namespace Core.Specifications
 {
-    public class ListAgentByIdSpec : Specification<Agent>, ISingleResultSpecification
+    public class GetAgentByIdSpec : Specification<Agent>, ISingleResultSpecification
     {
-        public ListAgentByIdSpec(int agentId, bool withAssignemnts)
+        public GetAgentByIdSpec(int agentId, bool withAssignemnts)
         {
             Query.Where(a => a.Id.Equals(agentId));
             if (withAssignemnts)
@@ -15,6 +15,14 @@ namespace Core.Specifications
                     .ThenInclude(a=>a.Account);
             }
            
+        }
+    }
+
+    public class ListAgentWithGroupSpec : Specification<Agent>
+    {
+        public ListAgentWithGroupSpec()
+        {
+            Query.Include(a => a.Group);                   
         }
     }
 }

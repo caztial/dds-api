@@ -1,5 +1,6 @@
 ﻿using Ardalis.ApiEndpoints;
 using Core.Entities;
+using Core.Specifications;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernal.Interfaces;
 using Swashbuckle.AspNetCore.Annotations;
@@ -23,7 +24,8 @@ namespace WebAPI.Endpoints.AgentEndpoints
         ]
         public async override Task<ActionResult<List<Agent>>> HandleAsync(CancellationToken cancellationToken = default)
         {
-            return await _repository.ListAsync(cancellationToken);
+            ListAgentWithGroupSpec agentWithGroupSpec = new();
+            return await _repository.ListAsync(agentWithGroupSpec);
         }
 
     }
