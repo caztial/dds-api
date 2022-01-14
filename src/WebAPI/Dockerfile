@@ -23,4 +23,6 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 COPY "src/WebAPI/data.db" .
+COPY "src/WebAPI/data.db-shm" .
+COPY "src/WebAPI/data.db-wal" .
 ENTRYPOINT ["dotnet", "WebAPI.dll"]

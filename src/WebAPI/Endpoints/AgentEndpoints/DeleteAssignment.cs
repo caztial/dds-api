@@ -41,5 +41,4 @@ namespace WebAPI.Endpoints.AgentEndpoints
             return Ok();
         }
     }
-
 }
