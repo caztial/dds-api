@@ -25,4 +25,14 @@ namespace Core.Specifications
             Query.Include(a => a.Group);                   
         }
     }
+
+    public class ListAgentWithAllSpec : Specification<Agent>
+    {
+        public ListAgentWithAllSpec()
+        {
+            Query.Include(a => a.Group);
+            Query.Include(a => a.Assignments);
+            Query.AsNoTracking();
+        }
+    }
 }

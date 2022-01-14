@@ -19,7 +19,7 @@ namespace WebAPI.Endpoints.AgentEndpoints
         [SwaggerOperation(
             Summary = "List all Agents",
             Description = "List all Agent",
-            OperationId = "Agent.List",
+            OperationId = "Agent.Login",
             Tags = new[] { "AgentEndpoints" })
         ]
         public async override Task<ActionResult<Agent>> HandleAsync(LoginRequest request, CancellationToken cancellationToken = default)

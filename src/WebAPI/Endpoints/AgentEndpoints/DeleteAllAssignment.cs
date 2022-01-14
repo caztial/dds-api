@@ -36,7 +36,7 @@ namespace WebAPI.Endpoints.AgentEndpoints
                 }
                 await _agentRepository.UpdateAsync(agent, cancellationToken);
             }
-            throw new NotImplementedException();
+            return Ok();
         }
     }
 }
